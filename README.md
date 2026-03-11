@@ -1,97 +1,271 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# OpenTreatment Mobile App
 
-# Getting Started
+React Native mobile app for a healthcare platform with role-based flows for:
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+- Auth / onboarding
+- Doctor
+- Pharmacy
+- User
+- Admin
 
-## Step 1: Start Metro
+The project is written in TypeScript and currently uses React Native CLI with React Navigation.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Tech Stack
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- React Native `0.84.0`
+- React `19.2.3`
+- TypeScript
+- React Navigation
+- `react-native-gesture-handler`
+- `react-native-reanimated`
+- `react-native-screens`
+- `lucide-react-native`
 
-```sh
-# Using npm
+## Requirements
+
+Make sure your local environment is ready before running the app:
+
+- Node.js `>= 22.11.0`
+- npm
+- Android Studio with SDK and emulator
+- Xcode + CocoaPods for iOS
+
+Follow the official React Native environment setup if needed:
+
+- [React Native Environment Setup](https://reactnative.dev/docs/set-up-your-environment)
+
+## Installation
+
+From the project root:
+
+```bash
+npm install
+```
+
+## Run The App
+
+### 1. Start Metro
+
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+### 2. Run Android
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+```bash
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+### 3. Run iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+Install pods first if required:
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+cd ios
+pod install
+cd ..
 ```
 
-Then, and every time you update your native dependencies, run:
+Then run:
 
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+```bash
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Useful Commands
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```bash
+npm start
+npm run android
+npm run ios
+npm run lint
+npm test
+npx tsc --noEmit
+```
 
-## Step 3: Modify your app
+## Project Structure
 
-Now that you have successfully run the app, let's make changes!
+Current source layout:
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+```text
+src/
+  app/
+    App.tsx
+    navigation/
+    providers/
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+  config/
+  core/
+    api/
+    hooks/
+    storage/
+    types/
+    utils/
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+  modules/
+    auth/
+    doctor/
+    pharmacy/
+    user/
+    admin/
 
-## Congratulations! :tada:
+  shared/
+    components/
+    theme/
+    ui/
+    i18n/
 
-You've successfully run and modified your React Native App. :partying_face:
+  components/
+  navigation/
+  theme/
+```
 
-### Now what?
+## Structure Notes
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+This project is currently in a transition state between a root-based structure and a modular structure.
 
-# Troubleshooting
+- `src/app` is now the app entry layer
+- `src/modules/*` contains feature modules
+- `src/shared/*` is intended for reusable shared code
+- `src/components`, `src/navigation`, and `src/theme` still contain the currently used implementation
+- `src/app/navigation/*` and `src/app/providers/*` include bridge files so the app can move gradually toward the new structure
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+This means the app works with the new folder layout, but some placeholder files still exist and are not implemented yet.
 
-# Learn More
+## Main Entry Flow
 
-To learn more about React Native, take a look at the following resources:
+App startup currently flows like this:
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+```text
+App.tsx
+  -> src/app/App.tsx
+  -> src/app/providers/ThemeProvider.tsx
+  -> src/app/navigation/RootNavigator.tsx
+  -> src/navigation/RootNavigator.tsx
+```
+
+## Feature Modules
+
+### Auth
+
+Contains the onboarding flow:
+
+- Register
+- OTP verification
+- Professional details
+- Clinic details
+
+### Doctor
+
+Currently contains the most active screens, including:
+
+- Dashboard
+- Appointments
+- Patients
+- Billing
+- Revenue
+- Analytics
+- Services
+- Availability
+- Reviews
+- Profile
+- Settings
+
+### Pharmacy / User / Admin
+
+Folders are scaffolded and ready, but several files are still placeholders.
+
+## Styling
+
+The project currently uses standard React Native styling:
+
+- `StyleSheet.create(...)`
+- inline dynamic theme-based styles where needed
+
+No Tailwind / NativeWind setup is active in the current codebase.
+
+## Theme
+
+Theme logic currently lives in:
+
+- [`src/theme/theme.ts`](./src/theme/theme.ts)
+- [`src/theme/ThemeProvider.tsx`](./src/theme/ThemeProvider.tsx)
+
+It supports light/dark mode values and exposes:
+
+- `colors`
+- `mode`
+- `isDark`
+- `toggleTheme()`
+
+## Navigation
+
+Main navigation currently lives in:
+
+- [`src/navigation/RootNavigator.tsx`](./src/navigation/RootNavigator.tsx)
+- [`src/navigation/MainNavigator.tsx`](./src/navigation/MainNavigator.tsx)
+- [`src/navigation/MainTabNavigator.tsx`](./src/navigation/MainTabNavigator.tsx)
+
+The doctor experience is driven by:
+
+- stack navigation for onboarding
+- drawer navigation for the main shell
+- bottom tabs inside the drawer
+
+## Development Guidelines
+
+Recommended direction for future cleanup:
+
+- keep app bootstrapping inside `src/app`
+- move reusable code toward `src/shared`
+- keep business/domain code inside `src/modules`
+- gradually reduce direct usage of root `src/components`, `src/navigation`, and `src/theme`
+
+## Known State
+
+Current status of the repo:
+
+- TypeScript typecheck is passing
+- app folder structure is aligned enough to continue development
+- several scaffolded files still contain only `export {}`
+- pharmacy, user, admin, and parts of shared/core still need real implementation
+
+## Troubleshooting
+
+### Metro cache issues
+
+If Metro behaves unexpectedly:
+
+```bash
+npm start -- --reset-cache
+```
+
+### Android build issues
+
+Try a clean build:
+
+```bash
+cd android
+./gradlew clean
+cd ..
+npm run android
+```
+
+### Type check
+
+```bash
+npx tsc --noEmit
+```
+
+## Next Suggested Cleanup
+
+If you continue building this app, the next good steps are:
+
+1. Move active shared UI from `src/components` into `src/shared/components`
+2. Move theme files from `src/theme` into `src/shared/theme`
+3. Replace placeholder files in `modules/pharmacy`, `modules/user`, and `modules/admin`
+4. Add real API and store implementations under `src/core` and `src/modules/*`
+
+## License
+
+This project is private and intended for internal development unless stated otherwise.
