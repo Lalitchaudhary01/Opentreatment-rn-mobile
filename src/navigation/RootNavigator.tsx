@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import SignUpScreen from '../screens/onboarding/SignUpScreen';
-import VerifyEmailScreen from '../screens/onboarding/VerifyEmailScreen';
-import ProfessionalDetailsScreen from '../screens/onboarding/ProfessionalDetailsScreen';
-import ClinicDetailsScreen from '../screens/onboarding/ClinicDetailsScreen';
+import SignUpScreen from '../modules/auth/screens/RegisterScreen';
+import VerifyEmailScreen from '../modules/auth/screens/OtpVerifyScreen';
+import ProfessionalDetailsScreen from '../modules/auth/screens/doctor/ProfessionalDetailsScreen';
+import ClinicDetailsScreen from '../modules/auth/screens/doctor/ClinicDetailsScreen';
 import MainNavigator from './MainNavigator';
 
 const Stack = createStackNavigator();
