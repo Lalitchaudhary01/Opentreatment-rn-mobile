@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Bell, Sun, Moon, Menu } from 'lucide-react-native';
 import { Colors } from '../theme/theme';
 import { useTheme } from '../theme/ThemeProvider';
@@ -17,12 +17,11 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, showProfile = t
     const navigation = useNavigation<any>();
 
     return (
-        <View className="flex-row items-center justify-between border-b px-5 pb-[15px] pt-[50px]" style={{ backgroundColor: colors.navy2, borderBottomColor: colors.border }}>
-            <View className="gap-0.5">
-                <View className="flex-row items-center gap-3">
+        <View style={[styles.container, { backgroundColor: colors.navy2, borderBottomColor: colors.border }]}>
+            <View style={styles.left}>
+                <View style={styles.titleRow}>
                     <TouchableOpacity
-                        className="h-[38px] w-[38px] items-center justify-center rounded-[10px] border"
-                        style={{ borderColor: colors.border }}
+                        style={[styles.menuBtn, { borderColor: colors.border }]}
                         onPress={() => navigation.openDrawer()}
                     >
                         <Menu size={20} color={colors.text2} />
@@ -33,10 +32,9 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, showProfile = t
                     </View>
                 </View>
             </View>
-            <View className="flex-row items-center gap-3">
+            <View style={styles.right}>
                 <TouchableOpacity
-                    className="relative h-[38px] w-[38px] items-center justify-center rounded-[10px] border"
-                    style={{ borderColor: colors.border }}
+                    style={[styles.iconBtn, { borderColor: colors.border }]}
                     onPress={toggleTheme}
                 >
                     {isDark ? (
@@ -46,17 +44,14 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, showProfile = t
                     )}
                 </TouchableOpacity>
 
-                <TouchableOpacity className="relative h-[38px] w-[38px] items-center justify-center rounded-[10px] border" style={{ borderColor: colors.border }}>
+                <TouchableOpacity style={[styles.iconBtn, { borderColor: colors.border }]}>
                     <Bell size={20} color={colors.text2} />
-                    <View
-                        className="absolute right-2 top-2 h-2 w-2 rounded-full border-[1.5px] bg-red-500"
-                        style={{ borderColor: Colors.dark.navy2 }}
-                    />
+                    <View style={styles.badge} />
                 </TouchableOpacity>
 
                 {showProfile && (
-                    <TouchableOpacity className="ml-1">
-                        <View className="h-[34px] w-[34px] items-center justify-center rounded-full" style={{ backgroundColor: colors.blue }}>
+                    <TouchableOpacity style={styles.profileBtn}>
+                        <View style={[styles.avatar, { backgroundColor: colors.blue }]}>
                             <Typography weight="700" style={{ fontSize: 12, color: 'white' }}>RI</Typography>
                         </View>
                     </TouchableOpacity>
@@ -65,3 +60,66 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, showProfile = t
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        paddingTop: 50,
+        paddingBottom: 15,
+        borderBottomWidth: 1,
+    },
+    left: {
+        gap: 2,
+    },
+    titleRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+    },
+    menuBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 10,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    right: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+    },
+    iconBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 10,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+    },
+    badge: {
+        position: 'absolute',
+        top: 8,
+        right: 8,
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        backgroundColor: '#ef4444',
+        borderWidth: 1.5,
+        borderColor: Colors.dark.navy2,
+    },
+    profileBtn: {
+        marginLeft: 4,
+    },
+    avatar: {
+        width: 34,
+        height: 34,
+        borderRadius: 17,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});

@@ -1,5 +1,4 @@
 import 'react-native-gesture-handler';
-import './global.css';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
@@ -10,7 +9,7 @@ import { ThemeProvider } from './src/theme/ThemeProvider';
 
 function App() {
   return (
-    <GestureHandlerRootView className="flex-1">
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <ThemeProvider>
           <NavigationContainer>

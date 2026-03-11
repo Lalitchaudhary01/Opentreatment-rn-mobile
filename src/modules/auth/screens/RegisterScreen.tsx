@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { View, StyleSheet, ScrollView, TouchableOpacity, TextInput, Image } from 'react-native';
 import { useTheme } from '../../theme/ThemeProvider';
 import { Typography } from '../../components/Base';
-import { Eye, EyeOff } from 'lucide-react-native';
+import { Mail, Lock, Eye, EyeOff, Github } from 'lucide-react-native';
 import { AuthFooter } from '../../components/AuthFooter';
 
 const SignUpScreen = ({ navigation }: any) => {
@@ -33,62 +33,62 @@ const SignUpScreen = ({ navigation }: any) => {
     };
 
     return (
-        <View className="flex-1" style={{ backgroundColor: colors.navy }}>
-            <View className="mb-10 flex-row items-center px-6 pt-[60px]">
-                <View className="h-8 w-8 items-center justify-center rounded-lg" style={{ backgroundColor: colors.blue }}>
+        <View style={[styles.container, { backgroundColor: colors.navy }]}>
+            <View style={styles.sidebarGraphic}>
+                <View style={[styles.logoBtn, { backgroundColor: colors.blue }]}>
                     <Typography weight="700" style={{ color: 'white' }}>OT</Typography>
                 </View>
                 <Typography weight="700" style={{ fontSize: 20, color: colors.white, marginLeft: 12 }}>OpenTreatment</Typography>
             </View>
 
-            <ScrollView contentContainerStyle={{ paddingHorizontal: 24 }} showsVerticalScrollIndicator={false}>
-                <View className="mb-8">
+            <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+                <View style={styles.formHeader}>
                     <Typography variant="h1" weight="700" style={{ fontSize: 28, color: colors.white, marginBottom: 8 }}>Create your account</Typography>
                     <Typography weight="500" style={{ color: colors.text3 }}>Get started free — no credit card required</Typography>
                 </View>
 
-                <View className="mb-8">
-                    <TouchableOpacity className="h-[52px] flex-row items-center justify-center gap-3 rounded-xl border" style={{ borderColor: colors.border2 }}>
-                        <View className="h-5 w-5 rounded bg-[#ccc]" />
+                <View style={styles.socialRow}>
+                    <TouchableOpacity style={[styles.socialBtn, { borderColor: colors.border2 }]}>
+                        <View style={styles.socialIconPlaceholder} />
                         <Typography weight="600" style={{ color: colors.text, fontSize: 15 }}>Continue with Google</Typography>
                     </TouchableOpacity>
-                    <TouchableOpacity className="mt-3 h-[52px] flex-row items-center justify-center gap-3 rounded-xl border" style={{ borderColor: colors.border2 }}>
-                        <View className="h-5 w-5 rounded bg-[#ccc]" />
+                    <TouchableOpacity style={[styles.socialBtn, { borderColor: colors.border2, marginTop: 12 }]}>
+                        <View style={styles.socialIconPlaceholder} />
                         <Typography weight="600" style={{ color: colors.text, fontSize: 15 }}>Continue with Apple</Typography>
                     </TouchableOpacity>
                 </View>
 
-                <View className="mb-8 flex-row items-center">
-                    <View className="h-px flex-1" style={{ backgroundColor: colors.border }} />
-                    <View className="rounded-full border border-slate-700/60 bg-slate-900/70 px-3 py-1">
+                <View style={styles.divider}>
+                    <View style={[styles.dividerLine, { backgroundColor: colors.border }]} />
+                    <View style={{ borderRadius: 999, borderWidth: 1, borderColor: 'rgba(51,65,85,0.6)', backgroundColor: 'rgba(15,23,42,0.7)', paddingHorizontal: 12, paddingVertical: 4 }}>
                         <Typography weight="500" style={{ color: colors.text3, fontSize: 12 }}>or sign up with email</Typography>
                     </View>
-                    <View className="h-px flex-1" style={{ backgroundColor: colors.border }} />
+                    <View style={[styles.dividerLine, { backgroundColor: colors.border }]} />
                 </View>
 
-                <View className="gap-6">
-                    <View className="gap-2">
-                        <Typography weight="700" style={[{ fontSize: 11, letterSpacing: 0.5 }, { color: colors.text3 }]}>EMAIL ADDRESS</Typography>
+                <View style={styles.form}>
+                    <View style={styles.inputGroup}>
+                        <Typography weight="700" style={[styles.label, { color: colors.text3 }]}>EMAIL ADDRESS</Typography>
                         <TextInput
                             value={email}
                             onChangeText={setEmail}
                             placeholder="Email address"
                             placeholderTextColor={colors.text3}
                             keyboardType="email-address"
-                            style={[{ height: 52, borderRadius: 12, borderWidth: 1, paddingHorizontal: 16, fontSize: 15 }, { backgroundColor: 'rgba(17, 24, 39, 0.5)', borderColor: colors.border2, color: colors.text }]}
+                            style={[styles.input, { backgroundColor: 'rgba(17, 24, 39, 0.5)', borderColor: colors.border2, color: colors.text }]}
                         />
                     </View>
 
-                    <View className="gap-2">
-                        <Typography weight="700" style={[{ fontSize: 11, letterSpacing: 0.5 }, { color: colors.text3 }]}>PASSWORD</Typography>
-                        <View className="h-[52px] flex-row items-center rounded-xl border px-4" style={{ backgroundColor: 'rgba(17, 24, 39, 0.5)', borderColor: passwordError ? '#ef4444' : colors.border2 }}>
+                    <View style={styles.inputGroup}>
+                        <Typography weight="700" style={[styles.label, { color: colors.text3 }]}>PASSWORD</Typography>
+                        <View style={[styles.passwordContainer, { backgroundColor: 'rgba(17, 24, 39, 0.5)', borderColor: passwordError ? '#ef4444' : colors.border2 }]}>
                             <TextInput
                                 value={password}
                                 onChangeText={handlePasswordChange}
                                 placeholder="Create a strong password"
                                 placeholderTextColor={colors.text3}
                                 secureTextEntry={!showPassword}
-                                style={[{ flex: 1, fontSize: 15, height: '100%' }, { color: colors.text }]}
+                                style={[styles.passwordInput, { color: colors.text }]}
                             />
                             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                                 {showPassword ? <EyeOff size={20} color={colors.text3} /> : <Eye size={20} color={colors.text3} />}
@@ -101,15 +101,15 @@ const SignUpScreen = ({ navigation }: any) => {
                         )}
                     </View>
 
-                    <View className="gap-2">
-                        <Typography weight="700" style={[{ fontSize: 11, letterSpacing: 0.5 }, { color: colors.text3 }]}>CONFIRM PASSWORD</Typography>
+                    <View style={styles.inputGroup}>
+                        <Typography weight="700" style={[styles.label, { color: colors.text3 }]}>CONFIRM PASSWORD</Typography>
                         <TextInput
                             value={confirmPassword}
                             onChangeText={setConfirmPassword}
                             placeholder="Confirm your password"
                             placeholderTextColor={colors.text3}
                             secureTextEntry={!showPassword}
-                            style={[{ height: 52, borderRadius: 12, borderWidth: 1, paddingHorizontal: 16, fontSize: 15 }, { backgroundColor: 'rgba(17, 24, 39, 0.5)', borderColor: colors.border2, color: colors.text }]}
+                            style={[styles.input, { backgroundColor: 'rgba(17, 24, 39, 0.5)', borderColor: colors.border2, color: colors.text }]}
                         />
                     </View>
                 </View>
@@ -126,6 +126,95 @@ const SignUpScreen = ({ navigation }: any) => {
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    sidebarGraphic: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 24,
+        paddingTop: 60,
+        marginBottom: 40,
+    },
+    logoBtn: {
+        width: 32,
+        height: 32,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    scrollContent: {
+        paddingHorizontal: 24,
+    },
+    formHeader: {
+        marginBottom: 32,
+    },
+    socialRow: {
+        marginBottom: 32,
+    },
+    socialBtn: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 52,
+        borderRadius: 12,
+        borderWidth: 1,
+        gap: 12,
+    },
+    socialIconPlaceholder: {
+        width: 20,
+        height: 20,
+        backgroundColor: '#ccc',
+        borderRadius: 4,
+    },
+    divider: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 32,
+    },
+    dividerLine: {
+        flex: 1,
+        height: 1,
+    },
+    form: {
+        gap: 24,
+    },
+    inputGroup: {
+        gap: 8,
+    },
+    label: {
+        fontSize: 11,
+        letterSpacing: 0.5,
+    },
+    input: {
+        height: 52,
+        borderRadius: 12,
+        borderWidth: 1,
+        paddingHorizontal: 16,
+        fontSize: 15,
+    },
+    passwordContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 52,
+        borderRadius: 12,
+        borderWidth: 1,
+        paddingHorizontal: 16,
+    },
+    passwordInput: {
+        flex: 1,
+        fontSize: 15,
+        height: '100%',
+    },
+    footer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 40,
+        marginBottom: 40,
+    },
+});
 
 
 export default SignUpScreen;
