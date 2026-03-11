@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, TouchableOpacity, Switch } from 'react-native';
-import { Theme } from '../../theme/theme';
-import { useTheme } from '../../theme/ThemeProvider';
-import { Typography, Card } from '../../components/Base';
-import { Header } from '../../components/Header';
+import { useTheme } from '../../../theme/ThemeProvider';
+import { Typography, Card } from '../../../components/Base';
+import { Header } from '../../../components/Header';
 import { User, Shield, Bell, Eye, Database, ChevronRight, LogOut, Calendar, Users, Briefcase, TrendingUp, CreditCard, Settings as SettingsIcon } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 

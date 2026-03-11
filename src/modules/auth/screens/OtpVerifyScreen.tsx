@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
-import { useTheme } from '../../theme/ThemeProvider';
-import { Typography } from '../../components/Base';
+import { useTheme } from '../../../theme/ThemeProvider';
+import { Typography } from '../../../components/Base';
 import { Mail, CheckCircle2 } from 'lucide-react-native';
-import { AuthFooter } from '../../components/AuthFooter';
+import { AuthFooter } from '../../../components/AuthFooter';
 
 const VerifyEmailScreen = ({ navigation }: any) => {
     const { colors, isDark } = useTheme();

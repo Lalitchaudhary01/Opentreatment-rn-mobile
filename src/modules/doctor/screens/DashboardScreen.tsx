@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
-import { Theme } from '../../theme/theme';
-import { useTheme } from '../../theme/ThemeProvider';
-import { Typography, Card } from '../../components/Base';
-import { Header } from '../../components/Header';
+import { useTheme } from '../../../theme/ThemeProvider';
+import { Typography, Card } from '../../../components/Base';
+import { Header } from '../../../components/Header';
 import { Users, Calendar, TrendingUp, CreditCard, ChevronRight, Plus } from 'lucide-react-native';
 
 const StatCard = ({ title, value, delta, icon: Icon, color }: any) => {

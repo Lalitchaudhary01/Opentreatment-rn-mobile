@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { Theme } from '../../theme/theme';
-import { useTheme } from '../../theme/ThemeProvider';
-import { Typography, Card } from '../../components/Base';
-import { Header } from '../../components/Header';
+import { useTheme } from '../../../theme/ThemeProvider';
+import { Typography, Card } from '../../../components/Base';
+import { Header } from '../../../components/Header';
 import { BarChart2, TrendingUp, Users, Calendar, ArrowUpRight, ArrowDownRight } from 'lucide-react-native';
 
 const AnalyticsCard = ({ title, value, detail, trend, positive }: any) => {

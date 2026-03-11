@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
-import { useTheme } from '../../theme/ThemeProvider';
-import { Typography } from '../../components/Base';
+import { useTheme } from '../../../../theme/ThemeProvider';
+import { Typography } from '../../../../components/Base';
 import { ChevronLeft, Check, Stethoscope, Heart, Sparkles, Activity, User, Flower2 } from 'lucide-react-native';
-import { AuthFooter } from '../../components/AuthFooter';
+import { AuthFooter } from '../../../../components/AuthFooter';
 
 const ClinicDetailsScreen = ({ navigation }: any) => {
     const { colors } = useTheme();

@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Theme } from '../../theme/theme';
-import { useTheme } from '../../theme/ThemeProvider';
-import { Typography } from '../../components/Base';
-import { Header } from '../../components/Header';
+import { useTheme } from '../../../theme/ThemeProvider';
+import { Typography } from '../../../components/Base';
+import { Header } from '../../../components/Header';
 import { ShieldAlert } from 'lucide-react-native';
 
 const PlaceholderScreen = ({ route }: any) => {

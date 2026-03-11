@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native';
-import { Theme } from '../../theme/theme';
-import { useTheme } from '../../theme/ThemeProvider';
-import { Typography, Card } from '../../components/Base';
-import { Header } from '../../components/Header';
+import { useTheme } from '../../../theme/ThemeProvider';
+import { Typography, Card } from '../../../components/Base';
+import { Header } from '../../../components/Header';
 import { Search, Filter, MoreVertical, Phone, Calendar } from 'lucide-react-native';
 
 const PatientRow = ({ name, gender, age, lastVisit, id, type, status }: any) => {
