@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, StyleProp } from 'react-native';
+import { View, Text, ViewStyle, TextStyle, StyleProp } from 'react-native';
 import { Theme } from '../theme/theme';
 import { useTheme } from '../theme/ThemeProvider';
 
@@ -41,7 +41,7 @@ export const Card: React.FC<{ children: React.ReactNode, style?: StyleProp<ViewS
     const { colors } = useTheme();
     return (
         <View style={[
-            styles.card,
+            { borderRadius: Theme.radius.lg, borderWidth: 1, overflow: 'hidden' },
             { backgroundColor: colors.panel, borderColor: colors.border },
             style
         ] as any}>
@@ -49,11 +49,3 @@ export const Card: React.FC<{ children: React.ReactNode, style?: StyleProp<ViewS
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    card: {
-        borderRadius: Theme.radius.lg,
-        borderWidth: 1,
-        overflow: 'hidden',
-    },
-});

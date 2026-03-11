@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, ViewStyle, TextStyle } from 'react-native';
-import { Theme } from '../theme/theme';
+import { View, TextInput, ViewStyle } from 'react-native';
 import { useTheme } from '../theme/ThemeProvider';
 import { Typography } from './Base';
 
@@ -25,12 +24,12 @@ export const FormField: React.FC<FormFieldProps> = ({
 }) => {
     const { colors } = useTheme();
     return (
-        <View style={[styles.field, style]}>
-            <Typography weight="600" style={[styles.label, { color: colors.text2 }]}>{label}</Typography>
+        <View className="mb-5 w-full" style={style}>
+            <Typography weight="600" style={[{ fontSize: 14, marginBottom: 8, marginLeft: 4 }, { color: colors.text2 }]}>{label}</Typography>
             <TextInput
                 style={[
-                    styles.input,
-                    multiline && styles.multilineInput,
+                    { height: 56, borderRadius: 16, borderWidth: 1, paddingHorizontal: 16, fontSize: 15 },
+                    multiline && { height: 120, paddingTop: 16, textAlignVertical: 'top' },
                     { backgroundColor: colors.panel, borderColor: colors.border, color: colors.text }
                 ]}
                 placeholder={placeholder}
@@ -43,27 +42,3 @@ export const FormField: React.FC<FormFieldProps> = ({
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    field: {
-        width: '100%',
-        marginBottom: 20,
-    },
-    label: {
-        fontSize: 14,
-        marginBottom: 8,
-        marginLeft: 4,
-    },
-    input: {
-        height: 56,
-        borderRadius: 16,
-        borderWidth: 1,
-        paddingHorizontal: 16,
-        fontSize: 15,
-    },
-    multilineInput: {
-        height: 120,
-        paddingTop: 16,
-        textAlignVertical: 'top',
-    },
-});
