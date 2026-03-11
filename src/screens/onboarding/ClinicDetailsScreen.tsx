@@ -180,4 +180,3 @@ const styles = StyleSheet.create({
 });
 
 export default ClinicDetailsScreen;
-鼓

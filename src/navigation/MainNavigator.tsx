@@ -2,10 +2,10 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { MainTabNavigator } from './MainTabNavigator';
 import { Sidebar } from '../components/Sidebar';
-import BillingScreen from '../screens/main/BillingScreen';
-import AvailabilityScreen from '../screens/main/AvailabilityScreen';
-import RevenueScreen from '../screens/main/RevenueScreen';
-import AnalyticsScreen from '../screens/main/AnalyticsScreen';
+import BillingScreen from '../modules/doctor/screens/BillingScreen';
+import AvailabilityScreen from '../modules/doctor/screens/AvailabilityScreen';
+import RevenueScreen from '../modules/doctor/screens/RevenueScreen';
+import AnalyticsScreen from '../modules/doctor/screens/AnalyticsScreen';
 
 const Drawer = createDrawerNavigator();
 

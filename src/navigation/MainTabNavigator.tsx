@@ -7,10 +7,10 @@ import { useTheme } from '../theme/ThemeProvider';
 import { Typography } from '../components/Base';
 
 // Screens
-import DashboardScreen from '../screens/main/DashboardScreen';
-import AppointmentsScreen from '../screens/main/AppointmentsScreen';
-import PatientsScreen from '../screens/main/PatientsScreen';
-import SettingsScreen from '../screens/main/SettingsScreen';
+import DashboardScreen from '../modules/doctor/screens/DashboardScreen';
+import AppointmentsScreen from '../modules/doctor/screens/AppointmentsScreen';
+import PatientsScreen from '../modules/doctor/screens/PatientsScreen';
+import SettingsScreen from '../modules/doctor/screens/SettingsScreen';
 
 const Tab = createBottomTabNavigator();
 
